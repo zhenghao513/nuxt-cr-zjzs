@@ -43,7 +43,15 @@ const items = ref<MenuProps['items']>([
 </script>
 
 <style scoped>
+.nav-menu {
+  background-color: white;
+}
+
 .ant-menu {
   line-height: 61px;
+  width: 80vw;
+  margin: 0 auto;
+  padding: 0 10px;
+  border: none;
 }
 </style>
