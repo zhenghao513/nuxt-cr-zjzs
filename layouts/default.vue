@@ -23,6 +23,12 @@
   margin: 20px auto 0;
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100vw;
+  }
+}
+
 .ant-col {
   padding: 0 10px;
 }
