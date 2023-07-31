@@ -5,12 +5,14 @@
         v-model:selectedKeys="current"
         mode="horizontal"
         :items="items"
+        @select="handleSelect"
       />
     </ClientOnly>
   </div>
 </template>
 <script setup lang="ts">
 import { MenuProps } from 'ant-design-vue';
+import { useRouter } from 'vue-router';
 
 const current = ref<string[]>(['index']);
 const items = ref<MenuProps['items']>([
@@ -40,6 +42,10 @@ const items = ref<MenuProps['items']>([
     title: '分数线',
   },
 ]);
+const router = useRouter();
+const handleSelect: MenuProps['onSelect'] = ({ key }) => {
+  router.push(key === 'index' ? '/' : `/${key}`);
+};
 </script>
 
 <style scoped>
