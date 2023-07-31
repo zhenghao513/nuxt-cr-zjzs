@@ -6,6 +6,15 @@
           <slot name="title" />
         </div>
         <div class="plan-content">
+          <div class="plan-checkbox">
+            <slot name="checkbox" />
+          </div>
+          <div class="plan-search">
+            <slot name="search" />
+          </div>
+          <div class="plan-table">
+            <slot name="table" />
+          </div>
           <slot name="content" />
         </div>
       </div>
@@ -46,5 +55,13 @@
 
 .plan-content {
   padding: 25px;
+}
+
+.plan-search {
+  margin: 15px 0 20px;
+}
+
+.plan-table {
+  margin-top: 10px;
 }
 </style>
