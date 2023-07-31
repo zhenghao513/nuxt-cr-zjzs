@@ -2,6 +2,7 @@
   <div>
     <AppHeader />
     <AppMenu />
+    <NuxtPage />
   </div>
 </template>
 
