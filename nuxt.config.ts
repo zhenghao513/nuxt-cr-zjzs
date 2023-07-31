@@ -2,4 +2,14 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@ant-design-vue/nuxt'],
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'zh-CN',
+      },
+      charset: 'utf-8',
+      viewport: 'width=device-width, minimum-scale=1.0, viewport-fit=cover',
+      title: '浙江省成人高考报名',
+    },
+  },
 });
