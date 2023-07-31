@@ -1,6 +1,7 @@
 <template>
   <div>
-
+    <AppHeader />
+    <AppMenu />
   </div>
 </template>
 
