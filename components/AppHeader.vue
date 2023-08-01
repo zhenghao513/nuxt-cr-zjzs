@@ -6,7 +6,7 @@
 
 <style scoped>
 .nav-header {
-  height: 96px;
+  height: 116px;
   background-color: #37f;
 }
 </style>
