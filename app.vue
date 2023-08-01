@@ -5,6 +5,7 @@
       <AppMenu />
       <NuxtPage />
     </a-config-provider>
+    <a-back-top />
   </div>
 </template>
 
