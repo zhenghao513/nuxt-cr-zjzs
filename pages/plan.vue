@@ -10,13 +10,18 @@
         @search-click="handleSearchClick"
       />
     </template>
-    <template #table></template>
+    <template #table>
+      <PlanTable :data-source="tableDataSource" />
+    </template>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+import type { DataSourceType } from '~/components/PlanTable.vue';
+
 const { loading, setLoading, toggle } = useLoading();
 const search = ref('');
+const tableDataSource = ref<DataSourceType[]>([]);
 
 const handleSearchClick = (searchValue: string) => {
   search.value = searchValue;
