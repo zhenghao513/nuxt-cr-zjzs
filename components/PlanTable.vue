@@ -7,8 +7,24 @@
       :data-source="dataSource"
       :row-class-name="(_record, index) => (index % 2 === 1 ? 'table-striped' : '')"
       :pagination="pagination"
+      :row-key="(record) => record.zydm + record.yxmc"
       @resizeColumn="handleResizeColumn"
-    />
+    >
+      <template #expandedRowRender="{ record }">
+        <div class="remark">
+          <span class="remark-title">备注详情：</span>
+          <div class="remark-tag">
+            <a-tag
+              v-for="(item, index) in remark(record.bz)"
+              :key="record.zydm + record.yxmc"
+              color="blue"
+            >
+              {{ item }}
+            </a-tag>
+          </div>
+        </div>
+      </template>
+    </a-table>
   </div>
 </template>
 
@@ -52,6 +68,12 @@ const columns = [
 const handleResizeColumn: TableProps['onResizeColumn'] = (w, col) => {
   col.width = w;
 };
+
+const remark = (str: string | string[]) => {
+  str = str[0] === ';' ? str.slice(1) : str;
+  str = (str as string).split(/;+/);
+  return str;
+};
 </script>
 
 <style scoped>
@@ -66,5 +88,18 @@ const handleResizeColumn: TableProps['onResizeColumn'] = (w, col) => {
 
 .ant-table-striped :deep(table) {
   table-layout: fixed !important;
+}
+
+.ant-table-striped :deep(.ant-table-expanded-row .ant-table-cell) {
+  overflow: auto;
+}
+
+.remark {
+  display: flex;
+}
+
+.remark-title {
+  margin-right: 12px;
+  min-width: 70px;
 }
 </style>
