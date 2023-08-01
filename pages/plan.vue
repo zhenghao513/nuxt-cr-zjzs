@@ -48,6 +48,7 @@ const args: SpecialtyInfoParam = {
 const pagination = ref<TablePaginationConfig>({
   current: args.pageIndex,
   pageSize: args.pageSize,
+  showLessItems: true,
   showQuickJumper: true,
   showTotal(total) {
     return `共 ${total} 条`;
