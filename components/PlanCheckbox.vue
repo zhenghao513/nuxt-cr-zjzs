@@ -6,7 +6,7 @@
           <a-checkbox
             v-model:checked="hierarchicalCodeState.checkAll"
             :indeterminate="hierarchicalCodeState.indeterminate"
-            @change="onCheckAllhierarchicalCodeChange"
+            @change="onCheckAllHierarchicalCodeChange"
           >
             全选
           </a-checkbox>
@@ -86,7 +86,7 @@ const learningFormalCodeState = reactive({
   checkedList: ['1', '2', '4'],
 });
 
-const onCheckAllhierarchicalCodeChange = (e: any) => {
+const onCheckAllHierarchicalCodeChange = (e: any) => {
   Object.assign(hierarchicalCodeState, {
     checkedList: e.target.checked ? hierarchicalCode.value.map((option) => option.value) : [],
   });
