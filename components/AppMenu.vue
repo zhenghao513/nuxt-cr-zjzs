@@ -14,7 +14,10 @@
 import { MenuProps } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
 
-const current = ref<string[]>(['index']);
+const store = useLocalStorage('active', {
+  active: 'index',
+});
+const current = ref<string[]>([store.value.active]);
 const items = ref<MenuProps['items']>([
   {
     key: 'index',
@@ -44,6 +47,7 @@ const items = ref<MenuProps['items']>([
 ]);
 const router = useRouter();
 const handleSelect: MenuProps['onSelect'] = ({ key }) => {
+  store.value.active = key as string;
   router.push(key === 'index' ? '/' : `/${key}`);
 };
 </script>
