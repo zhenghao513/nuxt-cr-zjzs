@@ -4,6 +4,7 @@
       <AppHeader />
       <AppMenu />
       <NuxtPage />
+      <AppModal />
     </a-config-provider>
     <a-back-top />
   </div>
