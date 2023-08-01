@@ -10,11 +10,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
 const open = ref<boolean>(false);
 
-const handleOk = (e: MouseEvent) => {
-  console.log(e);
+const handleOk = () => {
   open.value = false;
 };
 
