@@ -36,7 +36,12 @@
       </a-col>
       <a-col :span="8">
         <a-form-item label="是否有补报计划">
-          <a-checkbox v-model:checked="isRemedy">是</a-checkbox>
+          <a-checkbox
+            v-model:checked="isRemedy"
+            @change="handleIsRemedyChange"
+          >
+            是
+          </a-checkbox>
         </a-form-item>
       </a-col>
     </a-row>
@@ -45,11 +50,12 @@
 <script setup lang="ts">
 import { queryHierarchicalCode, queryLearningFormalCode } from '~/api/plan';
 import type { CodeResult } from '~/api/plan';
-import type { CheckboxOptionType, CheckboxGroupProps } from 'ant-design-vue';
+import type { CheckboxOptionType, CheckboxGroupProps, CheckboxProps } from 'ant-design-vue';
 
 const emits = defineEmits<{
   hierarchicalCodeCheckedListChange: [checkedList: string[]];
   learningFormalCodeCheckedListChange: [checkedList: string[]];
+  isRemedyChange: [isRemedy: number];
 }>();
 
 onMounted(async () => {
@@ -126,5 +132,8 @@ const handleHierarchicalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
 };
 const handleLearningFormalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
   emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
+};
+const handleIsRemedyChange: CheckboxProps['onChange'] = () => {
+  emits('isRemedyChange', isRemedy.value ? 1 : -1);
 };
 </script>
