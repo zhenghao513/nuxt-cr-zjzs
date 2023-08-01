@@ -8,16 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { queryAnnounce } from '~/api/announce';
-import type { AnnounceResult } from '~/api/announce';
-
-const title = ref('');
-const content = ref('');
-onMounted(async () => {
-  const { data } = await queryAnnounce(2);
-  title.value = (data.value as AnnounceResult).obj.title;
-  content.value = (data.value as AnnounceResult).obj.content;
-});
+const { title, content } = useAnnounce(2);
 </script>
 
 <style scoped></style>
