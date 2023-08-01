@@ -127,10 +127,10 @@ watch(
   },
 );
 
-const handleHierarchicalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
+const handleHierarchicalCodeChange: CheckboxGroupProps['onChange'] = () => {
   emits('hierarchicalCodeCheckedListChange', hierarchicalCodeState.checkedList);
 };
-const handleLearningFormalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
+const handleLearningFormalCodeChange: CheckboxGroupProps['onChange'] = () => {
   emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
 };
 const handleIsRemedyChange: CheckboxProps['onChange'] = () => {
