@@ -6,13 +6,14 @@
       :columns="columns"
       :data-source="dataSource"
       :row-class-name="(_record, index) => (index % 2 === 1 ? 'table-striped' : '')"
+      :pagination="pagination"
       @resizeColumn="handleResizeColumn"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { TableProps } from 'ant-design-vue';
+import type { TableProps, TablePaginationConfig } from 'ant-design-vue';
 
 export interface DataSourceType {
   yxdm: string;
@@ -31,6 +32,7 @@ export interface DataSourceType {
 }
 const props = defineProps<{
   dataSource: DataSourceType[];
+  pagination: TablePaginationConfig;
 }>();
 
 const columns = [
