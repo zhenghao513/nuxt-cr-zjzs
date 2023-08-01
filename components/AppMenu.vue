@@ -18,6 +18,13 @@ const store = useLocalStorage('active', {
   active: 'index',
 });
 const current = ref<string[]>([store.value.active]);
+
+const route = useRoute();
+onMounted(() => {
+  // 通过 URL 切换所选菜单项
+  current.value = route.path === '/' ? ['index'] : [route.path.slice(1)];
+});
+
 const items = ref<MenuProps['items']>([
   {
     key: 'index',
