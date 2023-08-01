@@ -47,6 +47,11 @@ import { queryHierarchicalCode, queryLearningFormalCode } from '~/api/plan';
 import type { CodeResult } from '~/api/plan';
 import type { CheckboxOptionType, CheckboxGroupProps } from 'ant-design-vue';
 
+const emits = defineEmits<{
+  hierarchicalCodeCheckedListChange: [checkedList: string[]];
+  learningFormalCodeCheckedListChange: [checkedList: string[]];
+}>();
+
 onMounted(async () => {
   await queryCode();
 });
@@ -90,11 +95,13 @@ const onCheckAllHierarchicalCodeChange = (e: any) => {
   Object.assign(hierarchicalCodeState, {
     checkedList: e.target.checked ? hierarchicalCode.value.map((option) => option.value) : [],
   });
+  emits('hierarchicalCodeCheckedListChange', hierarchicalCodeState.checkedList);
 };
 const onCheckAllLearningFormalCodeStateChange = (e: any) => {
   Object.assign(learningFormalCodeState, {
     checkedList: e.target.checked ? learningFormalCode.value.map((option) => option.value) : [],
   });
+  emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
 };
 
 watch(
@@ -115,9 +122,9 @@ watch(
 );
 
 const handleHierarchicalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
-  console.log(code);
+  emits('hierarchicalCodeCheckedListChange', hierarchicalCodeState.checkedList);
 };
 const handleLearningFormalCodeChange: CheckboxGroupProps['onChange'] = (code) => {
-  console.log(code);
+  emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
 };
 </script>
