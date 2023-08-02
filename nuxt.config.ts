@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, minimum-scale=1.0, viewport-fit=cover',
       title: '浙江省成人高考报名',
     },
+    baseURL: '/nuxt-cr-zjzs/',
   },
   css: ['~/assets/css/main.css'],
   ssr: false,
