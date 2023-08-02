@@ -1,10 +1,20 @@
-# Nuxt 3 Minimal Starter
+# [nuxt-cr-zjzs](https://github.com/zhenghao513/nuxt-cr-zjzs)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+使用 `Nuxt` 重写的浙江省成人高考报名网站
 
-## Setup
+预览：https://zhenghao513.github.io/nuxt-cr-zjzs/
 
-Make sure to install the dependencies:
+官方版本：https://cr.zjzs.net/
+
+## 特点
+
+1. 使用 TS 书写代码，带来更高的可维护性
+2. 响应式设计，合理利用屏幕空间
+3. 可视化图表，复杂数据一目了然
+
+## 安装
+
+确保安装了依赖项：
 
 ```bash
 # npm
@@ -17,9 +27,9 @@ pnpm install
 yarn install
 ```
 
-## Development Server
+## 开发服务器
 
-Start the development server on `http://localhost:3000`:
+在 `http://localhost:3000` 上启动开发服务器：
 
 ```bash
 # npm
@@ -32,9 +42,9 @@ pnpm run dev
 yarn dev
 ```
 
-## Production
+## 生产
 
-Build the application for production:
+构建用于生产的应用程序：
 
 ```bash
 # npm
@@ -47,7 +57,7 @@ pnpm run build
 yarn build
 ```
 
-Locally preview production build:
+本地预览生产构建：
 
 ```bash
 # npm
@@ -60,4 +70,4 @@ pnpm run preview
 yarn preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+查看 [部署文档](https://nuxt.com/docs/getting-started/deployment) 获取更多信息。
