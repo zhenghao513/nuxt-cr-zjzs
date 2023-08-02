@@ -51,6 +51,11 @@ const items = ref<MenuProps['items']>([
     label: '分数线',
     title: '分数线',
   },
+  {
+    key: 'board',
+    label: '数据一览表',
+    title: '数据一览表',
+  },
 ]);
 const router = useRouter();
 const handleSelect: MenuProps['onSelect'] = ({ key }) => {
