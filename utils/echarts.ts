@@ -26,7 +26,7 @@ import type {
 import type { ComposeOption } from 'echarts/core';
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
-type ECOption = ComposeOption<
+export type ECOption = ComposeOption<
   | BarSeriesOption
   | LineSeriesOption
   | TitleComponentOption
@@ -36,7 +36,7 @@ type ECOption = ComposeOption<
 >;
 
 // 注册必须的组件
-export default echarts.use([
+echarts.use([
   TitleComponent,
   TooltipComponent,
   GridComponent,
@@ -49,6 +49,4 @@ export default echarts.use([
   CanvasRenderer,
 ]);
 
-export const option: ECOption = {
-  // ...
-};
+export default echarts;
