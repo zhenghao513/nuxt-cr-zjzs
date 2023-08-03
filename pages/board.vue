@@ -7,6 +7,9 @@
           <ChartLevel />
           <ChartMode />
         </div>
+        <div>
+          <ChartCityCounter />
+        </div>
       </div>
     </template>
   </NuxtLayout>
