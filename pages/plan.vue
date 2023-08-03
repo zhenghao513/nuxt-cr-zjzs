@@ -3,9 +3,9 @@
     <template #title>招生计划查询</template>
     <template #checkbox>
       <PlanCheckbox
-        @hierarchical-code-checked-list-change="onHierarchicalChange"
-        @learning-formal-code-checked-list-change="onLearningFormalChange"
-        @is-remedy-change="onisRemedyChange"
+        @exam-level-code-checked-list-change="onExamLevelChange"
+        @study-mode-code-checked-list-change="onStudyModeChange"
+        @is-remedy-change="onIsRemedyChange"
       />
     </template>
     <template #search>
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import type { DataSourceType } from '~/components/PlanTable.vue';
-import type { SpecialtyInfoParam, SpecialtyInfoResult } from '~/api/plan';
+import type { SpecialtyInfoModel, SpecialtyInfoRes } from '~/api/plan';
 import type { TablePaginationConfig } from 'ant-design-vue';
 import { querySpecialtyInfo } from '~/api/plan';
 
@@ -36,7 +36,7 @@ onMounted(async () => {
 const { loading, setLoading } = useLoading();
 const tableDataSource = ref<DataSourceType[]>([]);
 
-const args: SpecialtyInfoParam = {
+const args: SpecialtyInfoModel = {
   ccdmList: ['1', '2', '3'],
   keywords: '',
   pageIndex: 1,
@@ -65,17 +65,17 @@ const pagination = ref<TablePaginationConfig>({
 
 const listSpecialtyInfo = async () => {
   const { data } = await querySpecialtyInfo(args);
-  tableDataSource.value = (data.value as SpecialtyInfoResult).obj.list;
-  pagination.value.total = (data.value as SpecialtyInfoResult).obj.totalCount;
+  tableDataSource.value = (data.value as SpecialtyInfoRes).obj.list;
+  pagination.value.total = (data.value as SpecialtyInfoRes).obj.totalCount;
 };
 
-const onHierarchicalChange = (checkedList: string[]) => {
+const onExamLevelChange = (checkedList: string[]) => {
   args.ccdmList = checkedList;
 };
-const onLearningFormalChange = (checkedList: string[]) => {
+const onStudyModeChange = (checkedList: string[]) => {
   args.xxxsdmList = checkedList;
 };
-const onisRemedyChange = (isRemedy: number) => {
+const onIsRemedyChange = (isRemedy: number) => {
   args.hasBbjhs = isRemedy;
 };
 const handleSearchClick = async (searchValue: string) => {

@@ -4,16 +4,16 @@
       <a-col :span="8">
         <a-form-item label="报考层次">
           <a-checkbox
-            v-model:checked="hierarchicalCodeState.checkAll"
-            :indeterminate="hierarchicalCodeState.indeterminate"
-            @change="onCheckAllHierarchicalCodeChange"
+            v-model:checked="examLevelCodeState.checkAll"
+            :indeterminate="examLevelCodeState.indeterminate"
+            @change="onCheckAllExamLevelCodeChange"
           >
             全选
           </a-checkbox>
           <a-checkbox-group
-            v-model:value="hierarchicalCodeState.checkedList"
-            :options="hierarchicalCode"
-            @change="handleHierarchicalCodeChange"
+            v-model:value="examLevelCodeState.checkedList"
+            :options="examLevelCode"
+            @change="handleExamLevelCodeChange"
           />
         </a-form-item>
       </a-col>
@@ -21,16 +21,16 @@
       <a-col :span="8">
         <a-form-item label="学习形式">
           <a-checkbox
-            v-model:checked="learningFormalCodeState.checkAll"
-            :indeterminate="learningFormalCodeState.indeterminate"
-            @change="onCheckAllLearningFormalCodeStateChange"
+            v-model:checked="studyModeCodeState.checkAll"
+            :indeterminate="studyModeCodeState.indeterminate"
+            @change="onCheckAllStudyModeCodeStateChange"
           >
             全选
           </a-checkbox>
           <a-checkbox-group
-            v-model:value="learningFormalCodeState.checkedList"
-            :options="learningFormalCode"
-            @change="handleLearningFormalCodeChange"
+            v-model:value="studyModeCodeState.checkedList"
+            :options="studyModeCode"
+            @change="handleStudyModeCodeChange"
           />
         </a-form-item>
       </a-col>
@@ -48,13 +48,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { queryHierarchicalCode, queryLearningFormalCode } from '~/api/plan';
+import { queryExamLevelCode, queryStudyModeCode } from '~/api/plan';
 import type { CodeResult } from '~/api/plan';
 import type { CheckboxOptionType, CheckboxGroupProps, CheckboxProps } from 'ant-design-vue';
 
 const emits = defineEmits<{
-  hierarchicalCodeCheckedListChange: [checkedList: string[]];
-  learningFormalCodeCheckedListChange: [checkedList: string[]];
+  examLevelCodeCheckedListChange: [checkedList: string[]];
+  studyModeCodeCheckedListChange: [checkedList: string[]];
   isRemedyChange: [isRemedy: number];
 }>();
 
@@ -66,14 +66,14 @@ interface OptionType {
   optionCode: string;
   optionName: string;
 }
-const hierarchicalCode = ref<CheckboxOptionType[]>([]);
-const learningFormalCode = ref<CheckboxOptionType[]>([]);
+const examLevelCode = ref<CheckboxOptionType[]>([]);
+const studyModeCode = ref<CheckboxOptionType[]>([]);
 
 // 是否有补报计划
 const isRemedy = ref(false);
 const queryCode = async () => {
-  const { data: hCode } = await queryHierarchicalCode();
-  const { data: lCode } = await queryLearningFormalCode();
+  const { data: hCode } = await queryExamLevelCode();
+  const { data: lCode } = await queryStudyModeCode();
   const transition: (option: OptionType) => CheckboxOptionType = function (
     option: OptionType,
   ): CheckboxOptionType {
@@ -82,56 +82,56 @@ const queryCode = async () => {
       label: option.optionName,
     };
   };
-  hierarchicalCode.value = (hCode.value as CodeResult).obj.list.map(transition);
-  learningFormalCode.value = (lCode.value as CodeResult).obj.list.map(transition);
+  examLevelCode.value = (hCode.value as CodeResult).obj.list.map(transition);
+  studyModeCode.value = (lCode.value as CodeResult).obj.list.map(transition);
 };
 
-const hierarchicalCodeState = reactive({
+const examLevelCodeState = reactive({
   indeterminate: false,
   checkAll: true,
   checkedList: ['1', '2', '3'],
 });
-const learningFormalCodeState = reactive({
+const studyModeCodeState = reactive({
   indeterminate: false,
   checkAll: true,
   checkedList: ['1', '2', '4'],
 });
 
-const onCheckAllHierarchicalCodeChange = (e: any) => {
-  Object.assign(hierarchicalCodeState, {
-    checkedList: e.target.checked ? hierarchicalCode.value.map((option) => option.value) : [],
+const onCheckAllExamLevelCodeChange = (e: any) => {
+  Object.assign(examLevelCodeState, {
+    checkedList: e.target.checked ? examLevelCode.value.map((option) => option.value) : [],
   });
-  emits('hierarchicalCodeCheckedListChange', hierarchicalCodeState.checkedList);
+  emits('examLevelCodeCheckedListChange', examLevelCodeState.checkedList);
 };
-const onCheckAllLearningFormalCodeStateChange = (e: any) => {
-  Object.assign(learningFormalCodeState, {
-    checkedList: e.target.checked ? learningFormalCode.value.map((option) => option.value) : [],
+const onCheckAllStudyModeCodeStateChange = (e: any) => {
+  Object.assign(studyModeCodeState, {
+    checkedList: e.target.checked ? studyModeCode.value.map((option) => option.value) : [],
   });
-  emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
+  emits('studyModeCodeCheckedListChange', studyModeCodeState.checkedList);
 };
 
 watch(
-  () => hierarchicalCodeState.checkedList,
+  () => examLevelCodeState.checkedList,
   (val) => {
-    hierarchicalCodeState.indeterminate =
-      Boolean(val.length) && val.length < hierarchicalCode.value.length;
-    hierarchicalCodeState.checkAll = val.length === hierarchicalCode.value.length;
+    examLevelCodeState.indeterminate =
+      Boolean(val.length) && val.length < examLevelCode.value.length;
+    examLevelCodeState.checkAll = val.length === examLevelCode.value.length;
   },
 );
 watch(
-  () => learningFormalCodeState.checkedList,
+  () => studyModeCodeState.checkedList,
   (val) => {
-    learningFormalCodeState.indeterminate =
-      Boolean(val.length) && val.length < learningFormalCode.value.length;
-    learningFormalCodeState.checkAll = val.length === learningFormalCode.value.length;
+    studyModeCodeState.indeterminate =
+      Boolean(val.length) && val.length < studyModeCode.value.length;
+    studyModeCodeState.checkAll = val.length === studyModeCode.value.length;
   },
 );
 
-const handleHierarchicalCodeChange: CheckboxGroupProps['onChange'] = () => {
-  emits('hierarchicalCodeCheckedListChange', hierarchicalCodeState.checkedList);
+const handleExamLevelCodeChange: CheckboxGroupProps['onChange'] = () => {
+  emits('examLevelCodeCheckedListChange', examLevelCodeState.checkedList);
 };
-const handleLearningFormalCodeChange: CheckboxGroupProps['onChange'] = () => {
-  emits('learningFormalCodeCheckedListChange', learningFormalCodeState.checkedList);
+const handleStudyModeCodeChange: CheckboxGroupProps['onChange'] = () => {
+  emits('studyModeCodeCheckedListChange', studyModeCodeState.checkedList);
 };
 const handleIsRemedyChange: CheckboxProps['onChange'] = () => {
   emits('isRemedyChange', isRemedy.value ? 1 : -1);

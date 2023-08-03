@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import type { ECOption } from 'utils/echarts';
 import { querySpecialtyInfo } from '~/api/plan';
-import type { SpecialtyInfoResult } from '~/api/plan';
+import type { SpecialtyInfoRes } from '~/api/plan';
 
 const getTotal = async (ccdmList: string[]) => {
   const res = await querySpecialtyInfo({
@@ -17,7 +17,7 @@ const getTotal = async (ccdmList: string[]) => {
     hasBbjhs: -1,
   });
 
-  return (res.data.value as SpecialtyInfoResult).obj.totalCount;
+  return (res.data.value as SpecialtyInfoRes).obj.totalCount;
 };
 
 const draw = async () => {

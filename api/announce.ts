@@ -1,4 +1,4 @@
-export interface AnnounceResult {
+export interface AnnounceRes {
   retCode: number;
   obj: {
     bindType: number;
