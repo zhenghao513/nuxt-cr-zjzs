@@ -4,8 +4,8 @@
     <template #content>
       <div class="container">
         <div class="chart-level-and-mode">
-          <ChartLevel />
-          <ChartMode />
+          <ChartExamLevel />
+          <ChartStudyMode />
         </div>
         <div>
           <ChartCityCounter />

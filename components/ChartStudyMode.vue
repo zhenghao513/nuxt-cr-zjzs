@@ -7,20 +7,20 @@ import type { ECOption } from 'utils/echarts';
 import { querySpecialtyInfo } from '~/api/plan';
 import type { SpecialtyInfoRes } from '~/api/plan';
 
-const getTotal = async (xxxsdmList: string[]) => {
-  const res = await querySpecialtyInfo({
+const getTotalCount = async (stydyModeCode: string[]) => {
+ const specialtyInfo = await querySpecialtyInfo({
     ccdmList: [],
     keywords: '',
     pageIndex: 1,
     pageSize: 10001,
-    xxxsdmList,
+    xxxsdmList:stydyModeCode,
     hasBbjhs: -1,
   });
 
-  return (res.data.value as SpecialtyInfoRes).obj.totalCount;
+  return (specialtyInfo.data.value as SpecialtyInfoRes).obj.totalCount;
 };
 
-const draw = async () => {
+const drawChart = async () => {
   const myChart = echarts.init(document.getElementById('chart-mode') as HTMLElement);
   const option: ECOption = {
     title: {
@@ -40,9 +40,9 @@ const draw = async () => {
         type: 'pie',
         radius: '50%',
         data: [
-          { value: await getTotal(['1']), name: '脱产' },
-          { value: await getTotal(['2']), name: '业余' },
-          { value: await getTotal(['4']), name: '函授' },
+          { value: await getTotalCount(['1']), name: '脱产' },
+          { value: await getTotalCount(['2']), name: '业余' },
+          { value: await getTotalCount(['4']), name: '函授' },
         ],
         emphasis: {
           itemStyle: {
@@ -61,7 +61,7 @@ const draw = async () => {
 };
 
 onMounted(async () => {
-  await draw();
+  await drawChart();
 });
 </script>
 

@@ -7,9 +7,9 @@ import type { ECOption } from 'utils/echarts';
 import { querySpecialtyInfo } from '~/api/plan';
 import type { SpecialtyInfoRes } from '~/api/plan';
 
-const getTotal = async (ccdmList: string[]) => {
-  const res = await querySpecialtyInfo({
-    ccdmList,
+const getTotalCount = async (examLevelCode: string[]) => {
+  const specialtyInfo = await querySpecialtyInfo({
+    ccdmList: examLevelCode,
     keywords: '',
     pageIndex: 1,
     pageSize: 10001,
@@ -17,10 +17,10 @@ const getTotal = async (ccdmList: string[]) => {
     hasBbjhs: -1,
   });
 
-  return (res.data.value as SpecialtyInfoRes).obj.totalCount;
+  return (specialtyInfo.data.value as SpecialtyInfoRes).obj.totalCount;
 };
 
-const draw = async () => {
+const drawChart = async () => {
   const myChart = echarts.init(document.getElementById('chart-level') as HTMLElement);
   const option: ECOption = {
     title: {
@@ -40,9 +40,9 @@ const draw = async () => {
         type: 'pie',
         radius: '50%',
         data: [
-          { value: await getTotal(['1']), name: '专升本' },
-          { value: await getTotal(['2']), name: '高起本' },
-          { value: await getTotal(['3']), name: '专科层次' },
+          { value: await getTotalCount(['1']), name: '专升本' },
+          { value: await getTotalCount(['2']), name: '高起本' },
+          { value: await getTotalCount(['3']), name: '专科层次' },
         ],
         emphasis: {
           itemStyle: {
@@ -61,7 +61,7 @@ const draw = async () => {
 };
 
 onMounted(async () => {
-  await draw();
+  await drawChart();
 });
 </script>
 
