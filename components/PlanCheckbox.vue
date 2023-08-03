@@ -49,7 +49,7 @@
 </template>
 <script setup lang="ts">
 import { queryExamLevelCode, queryStudyModeCode } from '~/api/plan';
-import type { CodeResult } from '~/api/plan';
+import type { CodeRes } from '~/api/plan';
 import type { CheckboxOptionType, CheckboxGroupProps, CheckboxProps } from 'ant-design-vue';
 
 const emits = defineEmits<{
@@ -72,8 +72,8 @@ const studyModeCode = ref<CheckboxOptionType[]>([]);
 // 是否有补报计划
 const isRemedy = ref(false);
 const queryCode = async () => {
-  const { data: hCode } = await queryExamLevelCode();
-  const { data: lCode } = await queryStudyModeCode();
+  const { data: examLevel } = await queryExamLevelCode();
+  const { data: studyMode } = await queryStudyModeCode();
   const transition: (option: OptionType) => CheckboxOptionType = function (
     option: OptionType,
   ): CheckboxOptionType {
@@ -82,8 +82,8 @@ const queryCode = async () => {
       label: option.optionName,
     };
   };
-  examLevelCode.value = (hCode.value as CodeResult).obj.list.map(transition);
-  studyModeCode.value = (lCode.value as CodeResult).obj.list.map(transition);
+  examLevelCode.value = (examLevel.value as CodeRes).obj.list.map(transition);
+  studyModeCode.value = (studyMode.value as CodeRes).obj.list.map(transition);
 };
 
 const examLevelCodeState = reactive({

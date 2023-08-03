@@ -44,7 +44,7 @@ export interface SpecialtyInfoRes {
   };
 }
 
-export interface CodeResult {
+export interface CodeRes {
   retCode: number;
   obj: {
     list: Array<{
