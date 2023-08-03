@@ -74,9 +74,7 @@ const isRemedy = ref(false);
 const queryCode = async () => {
   const { data: examLevel } = await queryExamLevelCode();
   const { data: studyMode } = await queryStudyModeCode();
-  const transition: (option: OptionType) => CheckboxOptionType = function (
-    option: OptionType,
-  ): CheckboxOptionType {
+  const transition: (option: OptionType) => CheckboxOptionType = (option) => {
     return {
       value: option.optionCode,
       label: option.optionName,
