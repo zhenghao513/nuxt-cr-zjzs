@@ -43,7 +43,7 @@ const draw = async () => {
     ],
   };
   myChart.setOption(option);
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', () => {
     myChart.resize();
   });
 };
