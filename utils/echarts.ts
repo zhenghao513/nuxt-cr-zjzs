@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { BarChart, LineChart } from 'echarts/charts';
+import { BarChart, LineChart, PieChart } from 'echarts/charts';
 import {
   TitleComponent,
   TooltipComponent,
@@ -8,6 +8,7 @@ import {
   DatasetComponent,
   // 内置数据转换器组件 (filter, sort)
   TransformComponent,
+  LegendComponent,
 } from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -15,6 +16,7 @@ import type {
   // 系列类型的定义后缀都为 SeriesOption
   BarSeriesOption,
   LineSeriesOption,
+  PieSeriesOption,
 } from 'echarts/charts';
 import type {
   // 组件类型的定义后缀都为 ComponentOption
@@ -33,6 +35,7 @@ export type ECOption = ComposeOption<
   | TooltipComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | PieSeriesOption
 >;
 
 // 注册必须的组件
@@ -47,6 +50,8 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
+  LegendComponent,
+  PieChart,
 ]);
 
 export default echarts;

@@ -25,20 +25,32 @@ const draw = async () => {
   const option: ECOption = {
     title: {
       text: '报考层次',
+      left: 'center',
     },
-    tooltip: {},
-    xAxis: {
-      data: ['专升本', '高起本', '专科层次'],
+    tooltip: {
+      trigger: 'item',
     },
-    yAxis: {
-      type: 'value',
-      name: '招生名额',
+    legend: {
+      orient: 'vertical',
+      left: 'left',
     },
     series: [
       {
-        name: '招生名额',
-        type: 'bar',
-        data: [await getTotal(['1']), await getTotal(['2']), await getTotal(['3'])],
+        name: '报考层次',
+        type: 'pie',
+        radius: '50%',
+        data: [
+          { value: await getTotal(['1']), name: '专升本' },
+          { value: await getTotal(['2']), name: '高起本' },
+          { value: await getTotal(['3']), name: '专科层次' },
+        ],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
       },
     ],
   };

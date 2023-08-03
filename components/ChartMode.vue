@@ -25,20 +25,32 @@ const draw = async () => {
   const option: ECOption = {
     title: {
       text: '学习形式',
+      left: 'center',
     },
-    tooltip: {},
-    xAxis: {
-      data: ['脱产', '业余', '函授'],
+    tooltip: {
+      trigger: 'item',
     },
-    yAxis: {
-      type: 'value',
-      name: '招生名额',
+    legend: {
+      orient: 'vertical',
+      left: 'left',
     },
     series: [
       {
-        name: '招生名额',
-        type: 'bar',
-        data: [await getTotal(['1']), await getTotal(['2']), await getTotal(['4'])],
+        name: '学习形式',
+        type: 'pie',
+        radius: '50%',
+        data: [
+          { value: await getTotal(['1']), name: '脱产' },
+          { value: await getTotal(['2']), name: '业余' },
+          { value: await getTotal(['4']), name: '函授' },
+        ],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
       },
     ],
   };
