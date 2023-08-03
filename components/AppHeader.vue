@@ -76,4 +76,12 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 810px) {
+  .divider,
+  .divider + img,
+  .nav-header-info {
+    display: none;
+  }
+}
 </style>
