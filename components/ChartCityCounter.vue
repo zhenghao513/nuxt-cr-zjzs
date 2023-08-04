@@ -5,7 +5,6 @@
 <script setup lang="ts">
 import type { ECOption } from '~/utils/echarts';
 import type { SpecialtyInfoRes } from '~/api/plan';
-import { querySpecialtyInfo } from '~/api/plan';
 
 const listSpecialtyInfos = async () => {
   const res = await querySpecialtyInfo({

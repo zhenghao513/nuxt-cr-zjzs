@@ -1,4 +1,3 @@
-import { queryAnnounce } from '~/api/announce';
 import type { AnnounceRes } from '~/api/announce';
 
 export default function useAnnounce(bindType: number) {

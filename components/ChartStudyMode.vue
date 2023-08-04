@@ -4,16 +4,15 @@
 
 <script setup lang="ts">
 import type { ECOption } from 'utils/echarts';
-import { querySpecialtyInfo } from '~/api/plan';
 import type { SpecialtyInfoRes } from '~/api/plan';
 
 const getTotalCount = async (stydyModeCode: string[]) => {
- const specialtyInfo = await querySpecialtyInfo({
+  const specialtyInfo = await querySpecialtyInfo({
     ccdmList: [],
     keywords: '',
     pageIndex: 1,
     pageSize: 10001,
-    xxxsdmList:stydyModeCode,
+    xxxsdmList: stydyModeCode,
     hasBbjhs: -1,
   });
 

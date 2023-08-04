@@ -48,7 +48,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { queryExamLevelCode, queryStudyModeCode } from '~/api/plan';
 import type { CodeRes } from '~/api/plan';
 import type { CheckboxOptionType, CheckboxGroupProps, CheckboxProps } from 'ant-design-vue';
 

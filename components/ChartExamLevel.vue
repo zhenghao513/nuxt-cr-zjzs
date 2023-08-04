@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import type { ECOption } from 'utils/echarts';
-import { querySpecialtyInfo } from '~/api/plan';
 import type { SpecialtyInfoRes } from '~/api/plan';
 
 const getTotalCount = async (examLevelCode: string[]) => {

@@ -27,7 +27,6 @@
 import type { DataSourceType } from '~/components/PlanTable.vue';
 import type { SpecialtyInfoModel, SpecialtyInfoRes } from '~/api/plan';
 import type { TablePaginationConfig } from 'ant-design-vue';
-import { querySpecialtyInfo } from '~/api/plan';
 
 onMounted(async () => {
   await listSpecialtyInfo();
