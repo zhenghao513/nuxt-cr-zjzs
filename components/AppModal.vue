@@ -17,8 +17,8 @@ const handleOk = () => {
 };
 
 onMounted(() => {
-  const ua = navigator.userAgent;
-  if (ua.indexOf('Mobile') >= 0) {
+  const userAgent = navigator.userAgent;
+  if (userAgent.includes('Mobile')) {
     open.value = true;
   }
 });
