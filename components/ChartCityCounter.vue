@@ -4,10 +4,9 @@
 
 <script setup lang="ts">
 import type { ECOption } from '~/utils/echarts';
-import type { SpecialtyInfoRes } from '~/api/plan';
 
 const listSpecialtyInfos = async () => {
-  const res = await querySpecialtyInfo({
+  const { data } = await querySpecialtyInfo({
     ccdmList: [],
     keywords: '',
     pageIndex: 1,
@@ -15,8 +14,11 @@ const listSpecialtyInfos = async () => {
     xxxsdmList: [],
     hasBbjhs: 0,
   });
-
-  return (res.data.value as SpecialtyInfoRes).obj.list;
+  if (data.value?.msg.businessCode === 0) {
+    return data.value.obj.list;
+  } else {
+    return [];
+  }
 };
 
 const draw = async () => {

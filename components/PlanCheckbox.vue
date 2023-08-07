@@ -48,7 +48,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { CodeRes } from '~/api/plan';
 import type { CheckboxOptionType, CheckboxGroupProps, CheckboxProps } from 'ant-design-vue';
 
 const emits = defineEmits<{
@@ -79,8 +78,11 @@ const queryCode = async () => {
       label: option.optionName,
     };
   };
-  examLevelCode.value = (examLevel.value as CodeRes).obj.list.map(transition);
-  studyModeCode.value = (studyMode.value as CodeRes).obj.list.map(transition);
+
+  if (examLevel.value?.msg.businessCode === 0 && studyMode.value?.msg.businessCode === 0) {
+    examLevelCode.value = examLevel.value.obj.list.map(transition);
+    studyModeCode.value = studyMode.value.obj.list.map(transition);
+  }
 };
 
 const examLevelCodeState = reactive({

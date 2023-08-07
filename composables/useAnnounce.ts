@@ -5,9 +5,10 @@ export default function useAnnounce(bindType: number) {
   const content = ref('');
   onMounted(async () => {
     const { data } = await queryAnnounce(bindType);
-    title.value = (data.value as AnnounceRes).obj.title;
-    content.value = (data.value as AnnounceRes).obj.content;
+    if (data.value?.msg.businessCode === 0) {
+      title.value = data.value.obj.title;
+      content.value = data.value.obj.content;
+    }
   });
-
   return { title, content };
 }

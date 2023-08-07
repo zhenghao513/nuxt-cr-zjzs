@@ -64,8 +64,10 @@ const pagination = ref<TablePaginationConfig>({
 
 const listSpecialtyInfo = async () => {
   const { data } = await querySpecialtyInfo(args);
-  tableDataSource.value = (data.value as SpecialtyInfoRes).obj.list;
-  pagination.value.total = (data.value as SpecialtyInfoRes).obj.totalCount;
+  if (data.value?.msg.businessCode === 0) {
+    tableDataSource.value = data.value.obj.list;
+    pagination.value.total = data.value.obj.totalCount;
+  }
 };
 
 const onExamLevelChange = (checkedList: string[]) => {

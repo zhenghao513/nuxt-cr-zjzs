@@ -4,10 +4,9 @@
 
 <script setup lang="ts">
 import type { ECOption } from 'utils/echarts';
-import type { SpecialtyInfoRes } from '~/api/plan';
 
 const getTotalCount = async (stydyModeCode: string[]) => {
-  const specialtyInfo = await querySpecialtyInfo({
+  const { data } = await querySpecialtyInfo({
     ccdmList: [],
     keywords: '',
     pageIndex: 1,
@@ -15,8 +14,11 @@ const getTotalCount = async (stydyModeCode: string[]) => {
     xxxsdmList: stydyModeCode,
     hasBbjhs: -1,
   });
-
-  return (specialtyInfo.data.value as SpecialtyInfoRes).obj.totalCount;
+  if (data.value?.msg.businessCode === 0) {
+    return data.value.obj.totalCount;
+  } else {
+    return 0;
+  }
 };
 
 const drawChart = async () => {
