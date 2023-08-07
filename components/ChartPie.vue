@@ -1,17 +1,24 @@
 <template>
-  <div id="chart-level"></div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import type { ECOption } from 'utils/echarts';
+import type { ECOption } from '~/utils/echarts';
 
-const getTotalCount = async (examLevelCode: string[]) => {
+const attrs = useAttrs();
+const props = defineProps<{ left?: boolean }>();
+
+onMounted(async () => {
+  await drawChart();
+});
+
+const getTotalCount = async (code: string[]) => {
   const { data } = await querySpecialtyInfo({
-    ccdmList: examLevelCode,
+    ccdmList: props.left ? code : [],
     keywords: '',
     pageIndex: 1,
     pageSize: 10001,
-    xxxsdmList: [],
+    xxxsdmList: props.left ? [] : code,
     hasBbjhs: -1,
   });
   if (data.value?.msg.businessCode === 0) {
@@ -22,10 +29,11 @@ const getTotalCount = async (examLevelCode: string[]) => {
 };
 
 const drawChart = async () => {
-  const myChart = echarts.init(document.getElementById('chart-level') as HTMLElement);
+  const element = document.getElementById(attrs.id as string) as HTMLElement;
+  const myChart = echarts.init(element);
   const option: ECOption = {
     title: {
-      text: '报考层次',
+      text: props.left ? '报考层次' : '学习形式',
       left: 'center',
     },
     tooltip: {
@@ -37,13 +45,16 @@ const drawChart = async () => {
     },
     series: [
       {
-        name: '报考层次',
+        name: props.left ? '报考层次' : '学习形式',
         type: 'pie',
         radius: '50%',
         data: [
-          { value: await getTotalCount(['1']), name: '专升本' },
-          { value: await getTotalCount(['2']), name: '高起本' },
-          { value: await getTotalCount(['3']), name: '专科层次' },
+          { value: await getTotalCount(['1']), name: props.left ? '专升本' : '脱产' },
+          { value: await getTotalCount(['2']), name: props.left ? '高起本' : '业余' },
+          {
+            value: await getTotalCount(props.left ? ['3'] : ['4']),
+            name: props.left ? '专科层次' : '函授',
+          },
         ],
         emphasis: {
           itemStyle: {
@@ -55,19 +66,17 @@ const drawChart = async () => {
       },
     ],
   };
+
   myChart.setOption(option);
   window.addEventListener('resize', () => {
     myChart.resize();
   });
 };
-
-onMounted(async () => {
-  await drawChart();
-});
 </script>
 
 <style scoped>
-#chart-level {
+#left,
+#right {
   width: 100%;
   height: 400px;
 }

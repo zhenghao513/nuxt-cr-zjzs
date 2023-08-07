@@ -4,8 +4,11 @@
     <template #content>
       <div class="container">
         <div class="chart-level-and-mode">
-          <ChartExamLevel />
-          <ChartStudyMode />
+          <ChartPie
+            id="left"
+            left
+          />
+          <ChartPie id="right" />
         </div>
         <div>
           <ChartCityCounter />

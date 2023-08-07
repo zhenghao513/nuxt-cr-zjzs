@@ -79,7 +79,10 @@ const draw = async () => {
 };
 
 onMounted(async () => {
-  await draw();
+  // TODO: 要在饼图数据获取完成后加载
+  setTimeout(() => {
+    draw();
+  }, 200);
 });
 </script>
 
