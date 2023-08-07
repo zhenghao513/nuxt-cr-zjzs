@@ -7,16 +7,6 @@ export interface SpecialtyInfoModel {
   hasBbjhs: number;
 }
 
-const BaseInfo = {
-  body: {
-    args: {},
-    token: 'dreamtouch',
-    deviceInfo:
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.362023-07-31 21:58:36',
-    channel: 'pc_h5_ksd',
-  },
-};
-
 export interface SpecialtyInfoRes {
   retCode: number;
   obj: {
@@ -50,7 +40,7 @@ export interface CodeRes {
     list: Array<{
       optionCode: string;
       optionName: string;
-    }>
+    }>;
   };
   msg: {
     businessCode: number;
@@ -62,14 +52,18 @@ export interface CodeRes {
 export function queryExamLevelCode() {
   return useFetch('https://cr.zjzs.net/api/common/option/get-ccdm-option', {
     method: 'POST',
-    ...BaseInfo,
+    body: {
+      args: {},
+    },
   });
 }
 
 export function queryStudyModeCode() {
   return useFetch('https://cr.zjzs.net/api/common/option/get-xxxsdm-option', {
     method: 'POST',
-    ...BaseInfo,
+    body: {
+      args: {},
+    },
   });
 }
 
@@ -78,10 +72,6 @@ export function querySpecialtyInfo(args: SpecialtyInfoModel) {
     method: 'POST',
     body: {
       args,
-      token: 'dreamtouch',
-      deviceInfo:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.362023-07-31 21:47:41',
-      channel: 'pc_h5_ksd',
     },
   });
 }
