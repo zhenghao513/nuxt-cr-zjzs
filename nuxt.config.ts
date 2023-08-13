@@ -18,4 +18,15 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['api'],
   },
+  vite: {
+    server: {
+      proxy: {
+        '/server': {
+          target: 'https://cr.zjzs.net',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/server/, ''),
+        },
+      },
+    },
+  },
 });
