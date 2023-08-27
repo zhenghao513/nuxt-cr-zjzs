@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import type { DataSourceType } from '~/components/PlanTable.vue';
-import type { SpecialtyInfoModel, SpecialtyInfoRes } from '~/api/plan';
+import type { SpecialtyInfoModel } from '~/api/plan';
 import type { TablePaginationConfig } from 'ant-design-vue';
 
 onMounted(async () => {
@@ -64,10 +64,12 @@ const pagination = ref<TablePaginationConfig>({
 
 const listSpecialtyInfo = async () => {
   const { data } = await querySpecialtyInfo(args);
-  if (data.value?.msg.businessCode === 0) {
-    tableDataSource.value = data.value.obj.list;
-    pagination.value.total = data.value.obj.totalCount;
-  }
+  useErrorhandler(() => {
+    if (data.value?.msg.businessCode === 0) {
+      tableDataSource.value = data.value.obj.list;
+      pagination.value.total = data.value.obj.totalCount;
+    }
+  });
 };
 
 const onExamLevelChange = (checkedList: string[]) => {

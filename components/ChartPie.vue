@@ -21,11 +21,12 @@ const getTotalCount = async (code: string[]) => {
     xxxsdmList: props.left ? [] : code,
     hasBbjhs: -1,
   });
-  if (data.value?.msg.businessCode === 0) {
-    return data.value.obj.totalCount;
-  } else {
-    return 0;
-  }
+  useErrorhandler(() => {
+    if (data.value?.msg.businessCode === 0) {
+      return data.value.obj.totalCount;
+    }
+  });
+  return 0;
 };
 
 const drawChart = async () => {

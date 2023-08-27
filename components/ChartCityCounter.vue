@@ -14,11 +14,12 @@ const listSpecialtyInfos = async () => {
     xxxsdmList: [],
     hasBbjhs: 0,
   });
-  if (data.value?.msg.businessCode === 0) {
-    return data.value.obj.list;
-  } else {
-    return [];
-  }
+  useErrorhandler(() => {
+    if (data.value?.msg.businessCode === 0) {
+      return data.value.obj.list;
+    }
+  });
+  return [];
 };
 
 const draw = async () => {

@@ -12,14 +12,12 @@ export default function useAnnounce(bindType: number) {
   const content = ref('');
   onMounted(async () => {
     const { data } = await queryAnnounce(bindType);
-    try {
+    useErrorhandler(() => {
       if (data.value?.msg.businessCode === 0) {
         title.value = data.value.obj.title;
         content.value = data.value.obj.content;
       }
-    } catch (error) {
-      openNotification();
-    }
+    });
   });
   return { title, content };
 }
