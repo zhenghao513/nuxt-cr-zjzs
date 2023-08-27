@@ -1,12 +1,14 @@
 <template>
   <div class="nav-menu">
     <ClientOnly>
-      <a-menu
-        v-model:selectedKeys="current"
-        mode="horizontal"
-        :items="items"
-        @select="handleSelect"
-      />
+      <div class="menu-wrapper">
+        <a-menu
+          v-model:selectedKeys="current"
+          mode="horizontal"
+          :items="items"
+          @select="handleSelect"
+        />
+      </div>
     </ClientOnly>
   </div>
 </template>
@@ -69,11 +71,14 @@ const handleSelect: MenuProps['onSelect'] = ({ key }) => {
   background-color: white;
 }
 
-.ant-menu {
-  line-height: 61px;
+.menu-wrapper {
   width: 80vw;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+.ant-menu {
+  line-height: 61px;
   border: none;
 }
 </style>
