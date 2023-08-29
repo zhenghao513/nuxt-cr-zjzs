@@ -10,7 +10,7 @@ export default function useAnnounce(bindType: number) {
 
   const title = ref('');
   const content = ref('');
-  onMounted(async () => {
+  onMounted(async (): Promise<void> => {
     const { data } = await queryAnnounce(bindType);
     useErrorhandler(() => {
       if (data.value?.msg.businessCode === 0) {
