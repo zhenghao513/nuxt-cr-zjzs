@@ -15,6 +15,7 @@
     "@vueuse/core": "^10.3.0",
     "@vueuse/nuxt": "^10.3.0",
     "echarts": "5.4.2",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.6.5",
+    "prettier": "3.0.3"
   }
 }
