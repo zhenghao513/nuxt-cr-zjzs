@@ -21,7 +21,7 @@ const getTotalCount = async (code: string[]) => {
     xxxsdmList: props.left ? [] : code,
     hasBbjhs: -1,
   });
-  useErrorhandler(() => {
+  useHandleError(() => {
     if (data.value?.msg.businessCode === 0) {
       return data.value.obj.totalCount;
     }

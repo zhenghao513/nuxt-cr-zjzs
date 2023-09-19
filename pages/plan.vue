@@ -64,7 +64,7 @@ const pagination = ref<TablePaginationConfig>({
 
 const listSpecialtyInfo = async () => {
   const { data } = await querySpecialtyInfo(args);
-  useErrorhandler(() => {
+  useHandleError(() => {
     if (data.value?.msg.businessCode === 0) {
       tableDataSource.value = data.value.obj.list;
       pagination.value.total = data.value.obj.totalCount;

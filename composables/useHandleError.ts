@@ -1,4 +1,4 @@
-export default function useErrorhandler(callbackFn: () => void) {
+export default function useHandleError(callbackFn: () => void) {
   const openNotification = () => {
     notification.open({
       message: '没有足够的权限访问该资源',
