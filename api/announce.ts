@@ -13,7 +13,7 @@ export interface AnnounceRes {
 }
 
 export function queryAnnounce(bindType: number) {
-  return useFetch<AnnounceRes>('/server/api/common/option/get-system-use', {
+  return $fetch<AnnounceRes>('/server/api/common/option/get-system-use', {
     method: 'POST',
     body: {
       args: {

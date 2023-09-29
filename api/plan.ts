@@ -50,7 +50,7 @@ export interface CodeRes {
 }
 
 export function queryExamLevelCode() {
-  return useFetch<CodeRes>('/server/api/common/option/get-ccdm-option', {
+  return $fetch<CodeRes>('/server/api/common/option/get-ccdm-option', {
     method: 'POST',
     body: {
       args: {},
@@ -59,7 +59,7 @@ export function queryExamLevelCode() {
 }
 
 export function queryStudyModeCode() {
-  return useFetch<CodeRes>('/server/api/common/option/get-xxxsdm-option', {
+  return $fetch<CodeRes>('/server/api/common/option/get-xxxsdm-option', {
     method: 'POST',
     body: {
       args: {},
@@ -68,7 +68,7 @@ export function queryStudyModeCode() {
 }
 
 export function querySpecialtyInfo(args: SpecialtyInfoModel) {
-  return useFetch<SpecialtyInfoRes>('/server/api/front/student/get-zyxx-list', {
+  return $fetch<SpecialtyInfoRes>('/server/api/front/student/get-zyxx-list', {
     method: 'POST',
     body: {
       args,
