@@ -2,8 +2,6 @@
 
 使用 `Nuxt` 重写的成人高考招生计划查询网站
 
-预览：https://zhenghao513.github.io/nuxt-cr-zjzs/
-
 官方版本：https://cr.zjzs.net/
 
 ## 特点
