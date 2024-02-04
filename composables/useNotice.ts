@@ -1,6 +1,6 @@
 import { notification } from 'ant-design-vue';
 
-export default function useAnnounce(bindType: number) {
+export default function useNotice(bindType: number) {
   const openNotification = () => {
     notification.open({
       message: '没有足够的权限访问该资源',
@@ -11,7 +11,7 @@ export default function useAnnounce(bindType: number) {
   const title = ref('');
   const content = ref('');
   onMounted(async (): Promise<void> => {
-    const { data } = await queryAnnounce(bindType);
+    const { data } = await queryNotice(bindType);
     useHandleError(() => {
       if (data.value?.msg.businessCode === 0) {
         title.value = data.value.obj.title;

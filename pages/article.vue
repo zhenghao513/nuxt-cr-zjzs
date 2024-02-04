@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-const { title, content } = useAnnounce(12);
+const { title, content } = useNotice(12);
 </script>
 
 <style scoped></style>

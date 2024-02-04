@@ -1,4 +1,4 @@
-export interface AnnounceRes {
+export interface NoticeRes {
   retCode: number;
   obj: {
     bindType: number;
@@ -12,8 +12,8 @@ export interface AnnounceRes {
   };
 }
 
-export function queryAnnounce(bindType: number) {
-  return useFetch<AnnounceRes>('/server/api/common/option/get-system-use', {
+export function queryNotice(bindType: number) {
+  return useFetch<NoticeRes>('/server/api/common/option/get-system-use', {
     method: 'POST',
     body: {
       args: {
