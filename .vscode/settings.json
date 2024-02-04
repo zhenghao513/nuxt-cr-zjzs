@@ -1,0 +1,14 @@
+{
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "Consolas, 'Microsoft YaHei', monospace",
+  "editor.linkedEditing": true,
+  "formattingToggle.affects": [
+    "editor.formatOnSave",
+    "editor.codeActionsOnSave.source.fixAll.eslint"
+  ],
+  "vue.autoInsert.dotValue": true,
+  "vue.inlayHints.missingProps": true,
+  "vue.updateImportsOnFileMove.enabled": true,
+  "workbench.iconTheme": "file-icons",
+  "workbench.sideBar.location": "right"
+}
